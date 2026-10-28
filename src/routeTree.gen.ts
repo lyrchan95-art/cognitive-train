@@ -9,9 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeamsRouteImport } from './routes/teams'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as QuizRouteImport } from './routes/quiz'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ArchetypesRouteImport } from './routes/archetypes'
 import { Route as AboutRouteImport } from './routes/about'
@@ -46,6 +48,11 @@ import { Route as AuthenticatedAdminContentMatrixRouteImport } from './routes/_a
 import { Route as AuthenticatedAdminContentHealthRouteImport } from './routes/_authenticated/admin.content.health'
 import { Route as AuthenticatedAdminLabRunsIdRouteImport } from './routes/_authenticated/admin.lab.runs.$id'
 
+const TeamsRoute = TeamsRouteImport.update({
+  id: '/teams',
+  path: '/teams',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -59,6 +66,11 @@ const QuizRoute = QuizRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MethodologyRoute = MethodologyRouteImport.update({
+  id: '/methodology',
+  path: '/methodology',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -248,9 +260,11 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/archetypes': typeof ArchetypesRouteWithChildren
   '/auth': typeof AuthRoute
+  '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
   '/quiz': typeof QuizRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/teams': typeof TeamsRoute
   '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/audit': typeof AuthenticatedAuditRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
@@ -284,9 +298,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
   '/quiz': typeof QuizRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/teams': typeof TeamsRoute
   '/audit': typeof AuthenticatedAuditRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/feed': typeof AuthenticatedFeedRoute
@@ -320,9 +336,11 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/archetypes': typeof ArchetypesRouteWithChildren
   '/auth': typeof AuthRoute
+  '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
   '/quiz': typeof QuizRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/teams': typeof TeamsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/_authenticated/audit': typeof AuthenticatedAuditRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
@@ -359,9 +377,11 @@ export interface FileRouteTypes {
     | '/about'
     | '/archetypes'
     | '/auth'
+    | '/methodology'
     | '/pricing'
     | '/quiz'
     | '/sitemap.xml'
+    | '/teams'
     | '/admin'
     | '/audit'
     | '/dashboard'
@@ -395,9 +415,11 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/auth'
+    | '/methodology'
     | '/pricing'
     | '/quiz'
     | '/sitemap.xml'
+    | '/teams'
     | '/audit'
     | '/dashboard'
     | '/feed'
@@ -430,9 +452,11 @@ export interface FileRouteTypes {
     | '/about'
     | '/archetypes'
     | '/auth'
+    | '/methodology'
     | '/pricing'
     | '/quiz'
     | '/sitemap.xml'
+    | '/teams'
     | '/_authenticated/admin'
     | '/_authenticated/audit'
     | '/_authenticated/dashboard'
@@ -469,9 +493,11 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ArchetypesRoute: typeof ArchetypesRouteWithChildren
   AuthRoute: typeof AuthRoute
+  MethodologyRoute: typeof MethodologyRoute
   PricingRoute: typeof PricingRoute
   QuizRoute: typeof QuizRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TeamsRoute: typeof TeamsRoute
   ResearchSlugRoute: typeof ResearchSlugRoute
   ResearchIndexRoute: typeof ResearchIndexRoute
   LabSharedTokenRoute: typeof LabSharedTokenRoute
@@ -479,6 +505,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/teams': {
+      id: '/teams'
+      path: '/teams'
+      fullPath: '/teams'
+      preLoaderRoute: typeof TeamsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -498,6 +531,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/methodology': {
+      id: '/methodology'
+      path: '/methodology'
+      fullPath: '/methodology'
+      preLoaderRoute: typeof MethodologyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -848,9 +888,11 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ArchetypesRoute: ArchetypesRouteWithChildren,
   AuthRoute: AuthRoute,
+  MethodologyRoute: MethodologyRoute,
   PricingRoute: PricingRoute,
   QuizRoute: QuizRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TeamsRoute: TeamsRoute,
   ResearchSlugRoute: ResearchSlugRoute,
   ResearchIndexRoute: ResearchIndexRoute,
   LabSharedTokenRoute: LabSharedTokenRoute,

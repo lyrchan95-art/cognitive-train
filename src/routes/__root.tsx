@@ -77,18 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "The Cognitive Atelier — A psychological operating system for work" },
+      { title: "The Cognitive Atelier — Burnout early-warning for Hong Kong teams" },
       {
         name: "description",
         content:
-          "Discover your Cognitive Archetype, audit your workplace, and receive daily personalized psychology + AI insights built for who you are and where you work.",
+          "A 3-minute work-style assessment, a 30-second daily check-in, and an explainable burnout-risk score — for individuals and Hong Kong teams.",
       },
       { name: "author", content: "The Cognitive Atelier" },
       { property: "og:title", content: "The Cognitive Atelier" },
       {
         property: "og:description",
         content:
-          "A psychological operating system for the modern worker. 12 Cognitive Archetypes. Workplace toxicity audit. Daily personalized interventions.",
+          "See burnout coming before it costs you your best people. 12 work archetypes, a workplace audit, daily check-ins and an explainable risk score.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -8,12 +8,12 @@ export const Route = createFileRoute("/pricing")({
       {
         name: "description",
         content:
-          "Three tiers: Free, Premium, and Croft. Choose the depth of psychological individuation that fits your life.",
+          "Free for individuals during beta. Hong Kong teams can run a free 6-week pilot with aggregate team reports.",
       },
       { property: "og:title", content: "Pricing — The Cognitive Atelier" },
       {
         property: "og:description",
-        content: "Free, Premium, and Croft plans for personalized cognitive fitness.",
+        content: "Free for individuals during beta, and a free 6-week pilot for teams.",
       },
     ],
   }),
@@ -22,44 +22,36 @@ export const Route = createFileRoute("/pricing")({
 
 const TIERS = [
   {
-    name: "Free",
-    price: "$0",
-    tag: "Discover",
+    name: "Individual",
+    price: "Free",
+    note: "during beta",
+    tag: "For you",
     features: [
-      "Archetype quiz + full card",
-      "Daily prescription (base)",
-      "Access to the atlas",
+      "30-question work-style assessment and archetype profile",
+      "30-second daily check-in and burnout-risk score",
+      "Workplace audit across five dimensions",
+      "Daily briefing and action tuned to your archetype",
+      "Reading feed and learning pathways",
     ],
-    cta: "Start free",
+    cta: { to: "/quiz", label: "Take the assessment" },
     highlighted: false,
   },
   {
-    name: "Premium",
-    price: "$12",
-    tag: "Practice",
+    name: "Team pilot",
+    price: "Free",
+    note: "for 6 weeks",
+    tag: "For Hong Kong teams of 20–200",
     features: [
-      "Workplace toxicity audit",
-      "Contextual daily interventions",
-      "Streaks + reflections",
-      "Shareable archetype card",
+      "Everything in Individual, for every team member",
+      "Set-up session with our founding team",
+      "Weekly team report, in aggregate only — never individual answers",
+      "Groups smaller than five people are never reported on",
+      "Per-seat pricing in HKD agreed with you after the pilot",
     ],
-    cta: "Go Premium",
+    cta: { to: "/teams", label: "Request a pilot" },
     highlighted: true,
   },
-  {
-    name: "Croft",
-    price: "$29",
-    tag: "Master",
-    features: [
-      "Everything in Premium",
-      "AI-driven burnout prediction",
-      "Deep-dive insights + interventions",
-      "Priority support",
-    ],
-    cta: "Enter the Croft",
-    highlighted: false,
-  },
-];
+] as const;
 
 function PricingPage() {
   return (
@@ -67,15 +59,15 @@ function PricingPage() {
       <section className="container-page pt-20 pb-8 md:pt-28">
         <p className="eyebrow">Pricing</p>
         <h1 className="mt-4 max-w-3xl font-serif text-5xl font-bold md:text-6xl">
-          Choose the depth of your practice.
+          Free while we're in beta.
         </h1>
         <p className="mt-5 max-w-2xl text-lg text-ink-soft">
-          Every plan starts with your archetype. Deeper plans unlock workplace context,
-          predictive alerts, and long-form interventions.
+          Individuals get every feature free during beta. Teams start with a free 6-week pilot, then
+          move to per-seat pricing we agree together.
         </p>
       </section>
 
-      <section className="container-page grid gap-6 pb-24 pt-10 md:grid-cols-3">
+      <section className="container-page grid gap-6 pb-24 pt-10 md:grid-cols-2">
         {TIERS.map((t) => (
           <div
             key={t.name}
@@ -85,7 +77,7 @@ function PricingPage() {
             <h2 className="mt-3 font-serif text-3xl font-bold">{t.name}</h2>
             <p className="mt-4 font-serif text-5xl font-bold">
               {t.price}
-              <span className="ml-1 text-base font-medium text-ink-muted">/mo</span>
+              <span className="ml-2 text-base font-medium text-ink-muted">{t.note}</span>
             </p>
             <ul className="mt-6 space-y-3 text-sm text-ink-soft">
               {t.features.map((f) => (
@@ -95,16 +87,16 @@ function PricingPage() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8">
+            <div className="mt-auto pt-8">
               <Link
-                to="/quiz"
+                to={t.cta.to}
                 className={
                   t.highlighted
                     ? "inline-flex w-full items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground"
                     : "inline-flex w-full items-center justify-center rounded-full border border-ink px-5 py-3 text-sm font-semibold text-ink hover:bg-ink hover:text-paper"
                 }
               >
-                {t.cta}
+                {t.cta.label}
               </Link>
             </div>
           </div>

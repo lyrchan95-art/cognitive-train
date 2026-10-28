@@ -27,7 +27,7 @@ export const Route = createFileRoute("/quiz")({
       { property: "og:title", content: "Discover your Cognitive Archetype" },
       {
         property: "og:description",
-        content: "A 30-question assessment. Three minutes. A lifetime of psychological precision.",
+        content: "A 30-question assessment across six dimensions. About three minutes.",
       },
     ],
 

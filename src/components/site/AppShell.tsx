@@ -7,7 +7,7 @@ const NAV = [
   { to: "/", label: "Home" },
   { to: "/archetypes", label: "Archetypes" },
   { to: "/quiz", label: "Take the Quiz" },
-  { to: "/pathways", label: "Pathways" },
+  { to: "/teams", label: "For Teams" },
   { to: "/research", label: "Research" },
   { to: "/pricing", label: "Pricing" },
   { to: "/about", label: "About" },
@@ -143,8 +143,8 @@ function SiteFooter() {
         <div className="md:col-span-2">
           <p className="font-serif text-2xl font-bold">The Cognitive Atelier</p>
           <p className="mt-3 max-w-md text-sm text-ink-muted">
-            A psychological operating system for the modern worker. Discover who you are,
-            audit where you work, and receive daily interventions engineered for your mind.
+            Burnout early-warning for Hong Kong teams. Know how you work, audit where you
+            work, and catch rising strain early with a 30-second daily check-in.
           </p>
         </div>
         <FooterCol
@@ -152,15 +152,17 @@ function SiteFooter() {
           links={[
             { to: "/archetypes", label: "Archetypes" },
             { to: "/quiz", label: "Take the Quiz" },
+            { to: "/teams", label: "For Teams" },
             { to: "/pricing", label: "Pricing" },
           ]}
         />
         <FooterCol
           title="Atelier"
           links={[
-            { to: "/about", label: "Philosophy" },
+            { to: "/about", label: "About" },
+            { to: "/methodology", label: "Methodology" },
             { to: "/research", label: "Research" },
-            { to: "/", label: "Contact" },
+            { to: "/teams", label: "Contact" },
           ]}
         />
       </div>

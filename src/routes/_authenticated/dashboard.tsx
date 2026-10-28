@@ -5,6 +5,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { AppShell } from "@/components/site/AppShell";
 import { ArticleReaderModal } from "@/components/site/ArticleReaderModal";
+import { BurnoutRiskCard } from "@/components/site/BurnoutRiskCard";
 import { getMyArchetype } from "@/lib/user-archetype.functions";
 import { getArchetypeMeta, archetypeSignature } from "@/lib/quiz";
 import { ArchetypeRadar } from "@/components/site/ArchetypeRadar";
@@ -31,7 +32,7 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
       {
         name: "description",
         content:
-          "Your daily feed, workplace audit, and archetype profile — all in one place.",
+          "Your burnout-risk signal, daily check-in, workplace audit and archetype profile — all in one place.",
       },
     ],
   }),
@@ -183,6 +184,8 @@ function DashboardPage() {
         <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,2.5fr)_minmax(0,1fr)]">
           {/* MAIN */}
           <div className="min-w-0 space-y-6">
+            <BurnoutRiskCard userId={user.id} />
+
             {/* Daily Feed mosaic */}
             <div className="card-paper p-6 md:p-8">
               <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/60 pb-4">
@@ -229,9 +232,9 @@ function DashboardPage() {
                   Workplace Toxicity Assessment
                 </h3>
                 <p className="mt-2 max-w-xl text-sm text-ink-soft">
-                  Rate your environment across five dimensions — Balance, Safety, Growth,
-                  Autonomy, Belonging — and we'll tune tomorrow's briefing to what threatens
-                  your archetype most.
+                  Rate your environment across five dimensions — autonomy, psychological
+                  safety, workload, recognition and purpose. It feeds your burnout-risk score and
+                  tunes tomorrow's briefing to what threatens your archetype most.
                 </p>
               </div>
               <Link

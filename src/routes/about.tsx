@@ -8,13 +8,13 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "The Cognitive Atelier is a psychological operating system. We believe generic advice fails because humans are not generic.",
+          "The Cognitive Atelier is a burnout early-warning tool for people and teams in Hong Kong. Generic advice fails because people burn out in different ways.",
       },
       { property: "og:title", content: "Our Philosophy — The Cognitive Atelier" },
       {
         property: "og:description",
         content:
-          "Cognitive individuation: mapping psychology to daily reality, and delivering interventions that actually work.",
+          "Who you are, where you work, and how you are doing today — combined into an early, explainable burnout warning.",
       },
     ],
   }),
@@ -33,29 +33,29 @@ function AboutPage() {
         <div className="mt-14 grid gap-10 md:grid-cols-12">
           <div className="md:col-span-7 md:col-start-2 space-y-6 text-lg text-ink-soft">
             <p>
-              The Cognitive Atelier is a proprietary system that maps users to ten
-              distinct Cognitive Archetypes and delivers daily personalized insights,
-              actions, and workplace toxicity warnings.
+              The Cognitive Atelier is a burnout early-warning tool for people and teams
+              in Hong Kong. It maps each person to one of twelve work archetypes, audits
+              their workplace, and turns a 30-second daily check-in into a burnout-risk
+              score that explains what is driving it.
             </p>
             <p>
-              Where competitors deliver generic content, we deliver a psychological
-              operating system that understands <em>who you are</em>, <em>where you work</em>,{" "}
-              <em>how you respond to stress</em>, and <em>what you need daily</em>.
+              Most wellbeing tools treat everyone the same. We combine{" "}
+              <em>who you are</em>, <em>where you work</em> and <em>how you are doing today</em>,
+              because the same pressure breaks different people in different ways.
             </p>
             <p className="font-serif text-2xl italic text-ink">
-              “This is not personalization. It is cognitive individuation — the
-              process of mapping psychology to daily reality, and delivering interventions
-              that actually work.”
+              “The warning should come weeks before the resignation letter — and the
+              advice should fit the person.”
             </p>
           </div>
         </div>
 
         <div className="mt-20 grid gap-6 md:grid-cols-4">
           {[
-            { n: "01", t: "Discovery", d: "Archetype assignment via quiz." },
-            { n: "02", t: "Prescription", d: "Daily practices tuned to your archetype." },
-            { n: "03", t: "Context", d: "Interventions shaped by your workplace audit." },
-            { n: "04", t: "Prediction", d: "AI-driven alerts before burnout hits." },
+            { n: "01", t: "Assess", d: "A 30-question assessment assigns your work archetype." },
+            { n: "02", t: "Audit", d: "Five workplace dimensions, rated by you." },
+            { n: "03", t: "Check in", d: "Thirty seconds a day: energy, stress, workload, control." },
+            { n: "04", t: "Act early", d: "An explainable risk score and a daily action that fits you." },
           ].map((s) => (
             <div key={s.n} className="card-paper p-6">
               <p className="font-mono text-sm text-accent">{s.n}</p>

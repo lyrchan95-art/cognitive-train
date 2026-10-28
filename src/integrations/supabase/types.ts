@@ -283,6 +283,42 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_checkins: {
+        Row: {
+          checkin_date: string
+          control: number
+          created_at: string
+          energy: number
+          id: string
+          stress: number
+          updated_at: string
+          user_id: string
+          workload: number
+        }
+        Insert: {
+          checkin_date?: string
+          control: number
+          created_at?: string
+          energy: number
+          id?: string
+          stress: number
+          updated_at?: string
+          user_id: string
+          workload: number
+        }
+        Update: {
+          checkin_date?: string
+          control?: number
+          created_at?: string
+          energy?: number
+          id?: string
+          stress?: number
+          updated_at?: string
+          user_id?: string
+          workload?: number
+        }
+        Relationships: []
+      }
       lab_datasets: {
         Row: {
           config: Json
@@ -621,6 +657,36 @@ export type Database = {
             referencedColumns: ["slug"]
           },
         ]
+      }
+      pilot_requests: {
+        Row: {
+          company: string
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          name: string
+          team_size: string
+        }
+        Insert: {
+          company: string
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          team_size: string
+        }
+        Update: {
+          company?: string
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          team_size?: string
+        }
+        Relationships: []
       }
       profiles: {
         Row: {
