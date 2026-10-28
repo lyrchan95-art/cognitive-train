@@ -4,6 +4,7 @@ import { z } from "zod";
 import { AppShell } from "@/components/site/AppShell";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
+import { LEGAL_VERSION } from "@/lib/legal";
 
 const searchSchema = z.object({
   redirect: z.string().optional(),
@@ -31,6 +32,7 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
+  const [agreed, setAgreed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
@@ -62,7 +64,11 @@ function AuthPage() {
           password,
           options: {
             emailRedirectTo: window.location.origin + redirectTo,
-            data: { full_name: displayName || undefined },
+            data: {
+              full_name: displayName || undefined,
+              terms_version: LEGAL_VERSION,
+              terms_accepted_at: new Date().toISOString(),
+            },
           },
         });
         if (error) throw error;
@@ -128,6 +134,17 @@ function AuthPage() {
           >
             <span>Continue with Google</span>
           </button>
+          <p className="mt-2 text-center text-[11px] text-ink-muted">
+            By continuing, you agree to our{" "}
+            <Link to="/terms" className="underline hover:text-accent">
+              Terms
+            </Link>{" "}
+            and{" "}
+            <Link to="/privacy" className="underline hover:text-accent">
+              Privacy Policy
+            </Link>
+            .
+          </p>
 
           <div className="my-6 flex items-center gap-3 text-xs uppercase tracking-widest text-ink-muted">
             <span className="h-px flex-1 bg-border" />
@@ -172,6 +189,30 @@ function AuthPage() {
               />
             </div>
 
+            {mode === "signup" && (
+              <label className="flex items-start gap-2 text-xs leading-relaxed text-ink-soft">
+                <input
+                  type="checkbox"
+                  required
+                  checked={agreed}
+                  onChange={(e) => setAgreed(e.target.checked)}
+                  className="mt-0.5"
+                />
+                <span>
+                  I am 18 or over and agree to the{" "}
+                  <Link to="/terms" target="_blank" className="text-accent underline">
+                    Terms
+                  </Link>{" "}
+                  and{" "}
+                  <Link to="/privacy" target="_blank" className="text-accent underline">
+                    Privacy Policy
+                  </Link>
+                  , including the processing of my wellbeing answers as described there. I
+                  understand this is not a medical service.
+                </span>
+              </label>
+            )}
+
             {error && (
               <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
                 {error}
@@ -183,7 +224,7 @@ function AuthPage() {
 
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || (mode === "signup" && !agreed)}
               className="w-full rounded-full bg-ink px-4 py-3 text-sm font-semibold text-paper transition-opacity hover:opacity-90 disabled:opacity-60"
             >
               {loading ? "Working…" : mode === "signin" ? "Sign in" : "Create account"}

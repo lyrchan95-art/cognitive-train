@@ -139,8 +139,8 @@ function AuthAffordance() {
 function SiteFooter() {
   return (
     <footer className="mt-24 border-t border-border/70 bg-paper-dark/40">
-      <div className="container-page grid gap-10 py-14 md:grid-cols-4">
-        <div className="md:col-span-2">
+      <div className="container-page grid gap-10 py-14 sm:grid-cols-3 md:grid-cols-5">
+        <div className="sm:col-span-3 md:col-span-2">
           <p className="font-serif text-2xl font-bold">The Cognitive Atelier</p>
           <p className="mt-3 max-w-md text-sm text-ink-muted">
             Burnout early-warning for Hong Kong teams. Know how you work, audit where you
@@ -165,9 +165,24 @@ function SiteFooter() {
             { to: "/teams", label: "Contact" },
           ]}
         />
+        <FooterCol
+          title="Trust"
+          links={[
+            { to: "/privacy", label: "Privacy Policy" },
+            { to: "/terms", label: "Terms of Service" },
+            { to: "/support", label: "Get support" },
+          ]}
+        />
       </div>
       <div className="container-page flex flex-col items-start justify-between gap-3 border-t border-border/60 py-6 text-xs text-ink-muted md:flex-row md:items-center">
-        <p>© {new Date().getFullYear()} The Cognitive Atelier. All rights reserved.</p>
+        <p>
+          © {new Date().getFullYear()} The Cognitive Atelier. A wellbeing tool, not a medical
+          service. In an emergency call 999, or{" "}
+          <Link to="/support" className="underline hover:text-accent">
+            find 24-hour support
+          </Link>
+          .
+        </p>
         <p className="font-mono uppercase tracking-widest">v1.0 — Foundation</p>
       </div>
     </footer>

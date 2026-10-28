@@ -60,6 +60,7 @@ function AdminLayout() {
       { to: "/admin/articles", label: "Articles" },
       { to: "/admin/pathways", label: "Pathways" },
       { to: "/admin/research", label: "Research" },
+      { to: "/admin/pilots", label: "Pilot requests" },
     ] : []),
     ...(status.isEditor ? [{ to: "/admin/content", label: "Content Console" }] : []),
     ...(status.isLab ? [{ to: "/admin/lab", label: "Behaviour Lab" }] : []),

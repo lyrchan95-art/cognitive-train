@@ -361,6 +361,7 @@ function DashboardPage() {
                 <SideLink to="/pathways" label="Learning pathways" />
                 <SideLink to="/archetypes" label="The atlas" />
                 <SideLink to="/audit" label="Workplace audit" />
+                <SideLink to="/account" label="Your data & account" />
               </ul>
             </div>
           </aside>

@@ -9,9 +9,12 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TeamsRouteImport } from './routes/teams'
+import { Route as SupportRouteImport } from './routes/support'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as QuizRouteImport } from './routes/quiz'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -26,12 +29,14 @@ import { Route as ArchetypesSlugRouteImport } from './routes/archetypes.$slug'
 import { Route as AuthenticatedFeedRouteImport } from './routes/_authenticated/feed'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedAuditRouteImport } from './routes/_authenticated/audit'
+import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
 import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin.route'
 import { Route as AuthenticatedPathwaysIndexRouteImport } from './routes/_authenticated/pathways.index'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
 import { Route as LabSharedTokenRouteImport } from './routes/lab.shared.$token'
 import { Route as AuthenticatedPathwaysSlugRouteImport } from './routes/_authenticated/pathways.$slug'
 import { Route as AuthenticatedAdminResearchRouteImport } from './routes/_authenticated/admin.research'
+import { Route as AuthenticatedAdminPilotsRouteImport } from './routes/_authenticated/admin.pilots'
 import { Route as AuthenticatedAdminPathwaysRouteImport } from './routes/_authenticated/admin.pathways'
 import { Route as AuthenticatedAdminGuideRouteImport } from './routes/_authenticated/admin.guide'
 import { Route as AuthenticatedAdminArticlesRouteImport } from './routes/_authenticated/admin.articles'
@@ -48,9 +53,19 @@ import { Route as AuthenticatedAdminContentMatrixRouteImport } from './routes/_a
 import { Route as AuthenticatedAdminContentHealthRouteImport } from './routes/_authenticated/admin.content.health'
 import { Route as AuthenticatedAdminLabRunsIdRouteImport } from './routes/_authenticated/admin.lab.runs.$id'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TeamsRoute = TeamsRouteImport.update({
   id: '/teams',
   path: '/teams',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -61,6 +76,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const QuizRoute = QuizRouteImport.update({
   id: '/quiz',
   path: '/quiz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
@@ -132,6 +152,11 @@ const AuthenticatedAuditRoute = AuthenticatedAuditRouteImport.update({
   path: '/audit',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAccountRoute = AuthenticatedAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAdminRouteRoute = AuthenticatedAdminRouteRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -163,6 +188,12 @@ const AuthenticatedAdminResearchRoute =
   AuthenticatedAdminResearchRouteImport.update({
     id: '/research',
     path: '/research',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminPilotsRoute =
+  AuthenticatedAdminPilotsRouteImport.update({
+    id: '/pilots',
+    path: '/pilots',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
 const AuthenticatedAdminPathwaysRoute =
@@ -262,10 +293,14 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/support': typeof SupportRoute
   '/teams': typeof TeamsRoute
+  '/terms': typeof TermsRoute
   '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
+  '/account': typeof AuthenticatedAccountRoute
   '/audit': typeof AuthenticatedAuditRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/feed': typeof AuthenticatedFeedRoute
@@ -279,6 +314,7 @@ export interface FileRoutesByFullPath {
   '/admin/articles': typeof AuthenticatedAdminArticlesRoute
   '/admin/guide': typeof AuthenticatedAdminGuideRoute
   '/admin/pathways': typeof AuthenticatedAdminPathwaysRoute
+  '/admin/pilots': typeof AuthenticatedAdminPilotsRoute
   '/admin/research': typeof AuthenticatedAdminResearchRoute
   '/pathways/$slug': typeof AuthenticatedPathwaysSlugRoute
   '/lab/shared/$token': typeof LabSharedTokenRoute
@@ -300,9 +336,13 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/support': typeof SupportRoute
   '/teams': typeof TeamsRoute
+  '/terms': typeof TermsRoute
+  '/account': typeof AuthenticatedAccountRoute
   '/audit': typeof AuthenticatedAuditRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/feed': typeof AuthenticatedFeedRoute
@@ -314,6 +354,7 @@ export interface FileRoutesByTo {
   '/admin/articles': typeof AuthenticatedAdminArticlesRoute
   '/admin/guide': typeof AuthenticatedAdminGuideRoute
   '/admin/pathways': typeof AuthenticatedAdminPathwaysRoute
+  '/admin/pilots': typeof AuthenticatedAdminPilotsRoute
   '/admin/research': typeof AuthenticatedAdminResearchRoute
   '/pathways/$slug': typeof AuthenticatedPathwaysSlugRoute
   '/lab/shared/$token': typeof LabSharedTokenRoute
@@ -338,10 +379,14 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/methodology': typeof MethodologyRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/quiz': typeof QuizRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/support': typeof SupportRoute
   '/teams': typeof TeamsRoute
+  '/terms': typeof TermsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
+  '/_authenticated/account': typeof AuthenticatedAccountRoute
   '/_authenticated/audit': typeof AuthenticatedAuditRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/feed': typeof AuthenticatedFeedRoute
@@ -355,6 +400,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/articles': typeof AuthenticatedAdminArticlesRoute
   '/_authenticated/admin/guide': typeof AuthenticatedAdminGuideRoute
   '/_authenticated/admin/pathways': typeof AuthenticatedAdminPathwaysRoute
+  '/_authenticated/admin/pilots': typeof AuthenticatedAdminPilotsRoute
   '/_authenticated/admin/research': typeof AuthenticatedAdminResearchRoute
   '/_authenticated/pathways/$slug': typeof AuthenticatedPathwaysSlugRoute
   '/lab/shared/$token': typeof LabSharedTokenRoute
@@ -379,10 +425,14 @@ export interface FileRouteTypes {
     | '/auth'
     | '/methodology'
     | '/pricing'
+    | '/privacy'
     | '/quiz'
     | '/sitemap.xml'
+    | '/support'
     | '/teams'
+    | '/terms'
     | '/admin'
+    | '/account'
     | '/audit'
     | '/dashboard'
     | '/feed'
@@ -396,6 +446,7 @@ export interface FileRouteTypes {
     | '/admin/articles'
     | '/admin/guide'
     | '/admin/pathways'
+    | '/admin/pilots'
     | '/admin/research'
     | '/pathways/$slug'
     | '/lab/shared/$token'
@@ -417,9 +468,13 @@ export interface FileRouteTypes {
     | '/auth'
     | '/methodology'
     | '/pricing'
+    | '/privacy'
     | '/quiz'
     | '/sitemap.xml'
+    | '/support'
     | '/teams'
+    | '/terms'
+    | '/account'
     | '/audit'
     | '/dashboard'
     | '/feed'
@@ -431,6 +486,7 @@ export interface FileRouteTypes {
     | '/admin/articles'
     | '/admin/guide'
     | '/admin/pathways'
+    | '/admin/pilots'
     | '/admin/research'
     | '/pathways/$slug'
     | '/lab/shared/$token'
@@ -454,10 +510,14 @@ export interface FileRouteTypes {
     | '/auth'
     | '/methodology'
     | '/pricing'
+    | '/privacy'
     | '/quiz'
     | '/sitemap.xml'
+    | '/support'
     | '/teams'
+    | '/terms'
     | '/_authenticated/admin'
+    | '/_authenticated/account'
     | '/_authenticated/audit'
     | '/_authenticated/dashboard'
     | '/_authenticated/feed'
@@ -471,6 +531,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/articles'
     | '/_authenticated/admin/guide'
     | '/_authenticated/admin/pathways'
+    | '/_authenticated/admin/pilots'
     | '/_authenticated/admin/research'
     | '/_authenticated/pathways/$slug'
     | '/lab/shared/$token'
@@ -495,9 +556,12 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   MethodologyRoute: typeof MethodologyRoute
   PricingRoute: typeof PricingRoute
+  PrivacyRoute: typeof PrivacyRoute
   QuizRoute: typeof QuizRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SupportRoute: typeof SupportRoute
   TeamsRoute: typeof TeamsRoute
+  TermsRoute: typeof TermsRoute
   ResearchSlugRoute: typeof ResearchSlugRoute
   ResearchIndexRoute: typeof ResearchIndexRoute
   LabSharedTokenRoute: typeof LabSharedTokenRoute
@@ -505,11 +569,25 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/teams': {
       id: '/teams'
       path: '/teams'
       fullPath: '/teams'
       preLoaderRoute: typeof TeamsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -524,6 +602,13 @@ declare module '@tanstack/react-router' {
       path: '/quiz'
       fullPath: '/quiz'
       preLoaderRoute: typeof QuizRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing': {
@@ -624,6 +709,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAuditRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/account': {
+      id: '/_authenticated/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AuthenticatedAccountRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin': {
       id: '/_authenticated/admin'
       path: '/admin'
@@ -664,6 +756,13 @@ declare module '@tanstack/react-router' {
       path: '/research'
       fullPath: '/admin/research'
       preLoaderRoute: typeof AuthenticatedAdminResearchRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/pilots': {
+      id: '/_authenticated/admin/pilots'
+      path: '/pilots'
+      fullPath: '/admin/pilots'
+      preLoaderRoute: typeof AuthenticatedAdminPilotsRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
     '/_authenticated/admin/pathways': {
@@ -824,6 +923,7 @@ interface AuthenticatedAdminRouteRouteChildren {
   AuthenticatedAdminArticlesRoute: typeof AuthenticatedAdminArticlesRoute
   AuthenticatedAdminGuideRoute: typeof AuthenticatedAdminGuideRoute
   AuthenticatedAdminPathwaysRoute: typeof AuthenticatedAdminPathwaysRoute
+  AuthenticatedAdminPilotsRoute: typeof AuthenticatedAdminPilotsRoute
   AuthenticatedAdminResearchRoute: typeof AuthenticatedAdminResearchRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
@@ -838,6 +938,7 @@ const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren
     AuthenticatedAdminArticlesRoute: AuthenticatedAdminArticlesRoute,
     AuthenticatedAdminGuideRoute: AuthenticatedAdminGuideRoute,
     AuthenticatedAdminPathwaysRoute: AuthenticatedAdminPathwaysRoute,
+    AuthenticatedAdminPilotsRoute: AuthenticatedAdminPilotsRoute,
     AuthenticatedAdminResearchRoute: AuthenticatedAdminResearchRoute,
     AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
   }
@@ -849,6 +950,7 @@ const AuthenticatedAdminRouteRouteWithChildren =
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRouteWithChildren
+  AuthenticatedAccountRoute: typeof AuthenticatedAccountRoute
   AuthenticatedAuditRoute: typeof AuthenticatedAuditRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedFeedRoute: typeof AuthenticatedFeedRoute
@@ -858,6 +960,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRouteWithChildren,
+  AuthenticatedAccountRoute: AuthenticatedAccountRoute,
   AuthenticatedAuditRoute: AuthenticatedAuditRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedFeedRoute: AuthenticatedFeedRoute,
@@ -890,9 +993,12 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   MethodologyRoute: MethodologyRoute,
   PricingRoute: PricingRoute,
+  PrivacyRoute: PrivacyRoute,
   QuizRoute: QuizRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SupportRoute: SupportRoute,
   TeamsRoute: TeamsRoute,
+  TermsRoute: TermsRoute,
   ResearchSlugRoute: ResearchSlugRoute,
   ResearchIndexRoute: ResearchIndexRoute,
   LabSharedTokenRoute: LabSharedTokenRoute,

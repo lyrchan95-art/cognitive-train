@@ -106,7 +106,11 @@ export function BurnoutRiskCard({ userId }: { userId: string }) {
 
       <p className="mt-6 border-t border-border/60 pt-4 text-[11px] leading-relaxed text-ink-muted">
         A wellbeing signal, not a medical diagnosis. If you are struggling, please talk to someone
-        you trust or a professional.
+        you trust or a professional —{" "}
+        <Link to="/support" className="underline hover:text-accent">
+          24-hour support lines
+        </Link>
+        .
       </p>
     </div>
   );

@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { AppShell } from "@/components/site/AppShell";
+import { TEAM_PRICE_HKD_PER_SEAT } from "@/lib/legal";
 import { submitPilotRequest, TEAM_SIZES } from "@/lib/pilot-requests.functions";
 
 export const Route = createFileRoute("/teams")({
@@ -50,7 +51,7 @@ const PILOT_STEPS = [
 const PRIVACY = [
   "Employers never see an individual's answers, check-ins or risk score.",
   "Team reports are aggregate only, and groups smaller than five are never reported on.",
-  "Each person can ask us to delete their data at any time.",
+  "Each person can download or delete their own data at any time.",
 ];
 
 function TeamsPage() {
@@ -157,6 +158,9 @@ function PilotForm() {
       <div>
         <p className="eyebrow">Request a pilot</p>
         <p className="mt-2 font-serif text-2xl font-bold">Free for 6 weeks.</p>
+        <p className="mt-1 text-sm text-ink-muted">
+          Then HK${TEAM_PRICE_HKD_PER_SEAT} per person per month if you continue. No obligation.
+        </p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
