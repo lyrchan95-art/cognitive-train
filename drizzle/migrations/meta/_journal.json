@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1789309239093,
+      "tag": "0000_add_lab_and_editor_roles",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789309303265,
+      "tag": "0001_lab_and_content_console_schema",
+      "breakpoints": true
+    }
+  ]
+}

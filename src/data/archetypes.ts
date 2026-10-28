@@ -1,0 +1,298 @@
+export type Archetype = {
+  slug: string;
+  name: string;
+  icon: string;
+  tagline: string;
+  headline: string;
+  strengths: { title: string; body: string }[];
+  blindSpots: { title: string; body: string }[];
+  toxicityTrigger: { label: string; items: string[] };
+  burnoutPattern: { label: string; items: string[] };
+  prescription: string;
+  workplaceMatch: string[];
+  evolution: string[];
+  accent: string; // oklch token variant
+};
+
+export const ARCHETYPES: Archetype[] = [
+  {
+    slug: "sentinel",
+    name: "The Sentinel",
+    icon: "🛡️",
+    tagline: "The Steadfast One",
+    headline: "Reliable, disciplined, the backbone of any team.",
+    strengths: [
+      { title: "Reliability", body: "Follows through on commitments. Others trust them completely." },
+      { title: "Discipline", body: "Creates order from chaos. Loves systems and processes." },
+      { title: "Consistency", body: "Delivers the same quality every time, regardless of circumstances." },
+    ],
+    blindSpots: [
+      { title: "Resistance to Change", body: "\u201CIt worked before\u201D is their default answer." },
+      { title: "Over-Control", body: "Can\u2019t delegate. Must oversee everything." },
+      { title: "Process Obsession", body: "Values the method over the outcome." },
+    ],
+    toxicityTrigger: { label: "Chaos", items: ["Unpredictable leadership", "Frequent pivots without justification", "\u201CMove fast and break things\u201D culture"] },
+    burnoutPattern: { label: "Exhaustion from Over-Control", items: ["Works themselves to exhaustion", "Can\u2019t stop even when sick", "Resents others for not being as disciplined"] },
+    prescription: "Sentinel, your reliability is your superpower. But today, we\u2019re asking you to do something counterintuitive: delegate. Identify one task you usually do yourself and let someone else handle it.",
+    workplaceMatch: ["Structured environments", "Clear processes", "Predictable leadership"],
+    evolution: ["Sentinel \u2192 Strategist (when they embrace change)", "Sentinel \u2192 Guardian (when they protect others)"],
+    accent: "sentinel",
+  },
+  {
+    slug: "visionary",
+    name: "The Visionary",
+    icon: "🚀",
+    tagline: "The Idea Machine",
+    headline: "Innovative, big-picture, energizing.",
+    strengths: [
+      { title: "Innovation", body: "Sees possibilities others miss." },
+      { title: "Big-Picture Thinking", body: "Connects dots across domains." },
+      { title: "Energizing", body: "Inspires others with their vision." },
+    ],
+    blindSpots: [
+      { title: "Never Finishes", body: "Too many ideas, not enough execution." },
+      { title: "Detail-Phobic", body: "Hates the \u201Cboring\u201D work required to execute." },
+      { title: "Impulsive", body: "Starts new projects before finishing current ones." },
+    ],
+    toxicityTrigger: { label: "Micromanagement", items: ["Bureaucracy", "Slow decision-making", "\u201CDot every i and cross every t\u201D culture"] },
+    burnoutPattern: { label: "Idea Exhaustion", items: ["Spreads themselves too thin", "Exhausted by their own creativity", "Feels like a failure for not executing"] },
+    prescription: "Visionary, your mind is a firehose of ideas. Today, pick ONE \u2014 the one that matters most right now. Execute it. Ignore the other 47.",
+    workplaceMatch: ["Startup culture", "R&D teams", "Creative agencies"],
+    evolution: ["Visionary \u2192 Strategist", "Visionary \u2192 Alchemist"],
+    accent: "visionary",
+  },
+  {
+    slug: "harmonizer",
+    name: "The Harmonizer",
+    icon: "🌿",
+    tagline: "The Connector",
+    headline: "Empathetic, diplomatic, the team\u2019s glue.",
+    strengths: [
+      { title: "Empathy", body: "Understands others\u2019 emotions intuitively." },
+      { title: "Diplomacy", body: "Navigates conflicts with grace." },
+      { title: "Team Building", body: "Creates psychological safety for others." },
+    ],
+    blindSpots: [
+      { title: "Conflict Avoidance", body: "Prefers harmony over results." },
+      { title: "Absorbs Emotions", body: "Becomes the team therapist." },
+      { title: "Lack of Boundaries", body: "Says yes to everything." },
+    ],
+    toxicityTrigger: { label: "High Conflict", items: ["Aggressive cultures", "Bullying", "\u201CWinner takes all\u201D mentality"] },
+    burnoutPattern: { label: "Emotional Exhaustion", items: ["Absorbs everyone\u2019s stress", "Becomes the emotional sponge", "Has no energy left for themselves"] },
+    prescription: "Harmonizer, your empathy is your gift \u2014 and your vulnerability. Today, set one boundary. Say no to one request. Protect your energy like it\u2019s your most precious asset.",
+    workplaceMatch: ["Collaborative teams", "Non-profits", "HR, coaching, education"],
+    evolution: ["Harmonizer \u2192 Guardian", "Harmonizer \u2192 Sentinel"],
+    accent: "harmonizer",
+  },
+  {
+    slug: "perfectionist",
+    name: "The Perfectionist",
+    icon: "⚡",
+    tagline: "The Standard Bearer",
+    headline: "High standards, attention to detail, excellence.",
+    strengths: [
+      { title: "Quality", body: "Delivers excellence, always." },
+      { title: "Attention to Detail", body: "Catches what others miss." },
+      { title: "Standards", body: "Raises the bar for everyone." },
+    ],
+    blindSpots: [
+      { title: "Paralysis by Analysis", body: "Can\u2019t ship because it\u2019s \u201Cnot perfect.\u201D" },
+      { title: "Self-Critical", body: "Never feels good enough." },
+      { title: "Moving Goalposts", body: "Always finds something to improve." },
+    ],
+    toxicityTrigger: { label: "Criticism", items: ["Unclear expectations", "Constant feedback without appreciation", "\u201CThat\u2019s not good enough\u201D culture"] },
+    burnoutPattern: { label: "Never Done", items: ["Works endlessly toward an unattainable standard", "Cannot celebrate wins", "Feels like a failure despite success"] },
+    prescription: "Perfectionist, your standards are what make you exceptional. Today, ship the good-enough version. The perfect version is a myth that keeps you trapped.",
+    workplaceMatch: ["Quality-focused teams", "Law, medicine, architecture", "Audit / compliance"],
+    evolution: ["Perfectionist \u2192 Strategist", "Perfectionist \u2192 Sentinel"],
+    accent: "perfectionist",
+  },
+  {
+    slug: "rebel",
+    name: "The Rebel",
+    icon: "🔥",
+    tagline: "The Disruptor",
+    headline: "Contrarian, challenging, status quo destroyer.",
+    strengths: [
+      { title: "Disruption", body: "Sees what\u2019s broken and fixes it." },
+      { title: "Contrarian Thinking", body: "Challenges accepted wisdom." },
+      { title: "Courage", body: "Speaks truth to power." },
+    ],
+    blindSpots: [
+      { title: "Anti-Authority", body: "Rejects all rules, even useful ones." },
+      { title: "Burns Bridges", body: "Can\u2019t pick their battles." },
+      { title: "Exhausting", body: "Constant fighting drains those around them." },
+    ],
+    toxicityTrigger: { label: "Injustice", items: ["Authoritarianism", "\u201CBecause I said so\u201D leadership", "Power imbalances"] },
+    burnoutPattern: { label: "Battle Exhaustion", items: ["Fights every injustice, everywhere", "No energy left for creative work", "Becomes the complainer, not the builder"] },
+    prescription: "Rebel, your willingness to challenge the status quo makes you a revolutionary. Today, choose one battle. One. The others can wait.",
+    workplaceMatch: ["Innovation labs", "Startups", "Activist organizations"],
+    evolution: ["Rebel \u2192 Visionary", "Rebel \u2192 Alchemist"],
+    accent: "rebel",
+  },
+  {
+    slug: "anchor",
+    name: "The Anchor",
+    icon: "⚓",
+    tagline: "The Rock",
+    headline: "Calm, dependable, stabilizing presence.",
+    strengths: [
+      { title: "Calm Under Pressure", body: "Maintains composure when others panic." },
+      { title: "Stabilizing", body: "Creates psychological safety for the team." },
+      { title: "Dependable", body: "Shows up consistently, always." },
+    ],
+    blindSpots: [
+      { title: "Complacency", body: "\u201CIt worked before\u201D becomes dogma." },
+      { title: "Silent Suffering", body: "Doesn\u2019t ask for help." },
+      { title: "Resistance to Change", body: "Comfortable with the known." },
+    ],
+    toxicityTrigger: { label: "Instability", items: ["Constant reorganization", "Lack of direction", "Avoidable chaos"] },
+    burnoutPattern: { label: "Silent Carrying", items: ["Carries the team\u2019s burden without complaint", "Never asks for help", "Collapses under the accumulated weight"] },
+    prescription: "Anchor, your calm presence keeps the team grounded. Today, let go of some weight. Ask for help. You don\u2019t have to carry it alone.",
+    workplaceMatch: ["Crisis management", "Operations", "Government"],
+    evolution: ["Anchor \u2192 Sentinel", "Anchor \u2192 Guardian"],
+    accent: "anchor",
+  },
+  {
+    slug: "explorer",
+    name: "The Explorer",
+    icon: "🧭",
+    tagline: "The Seeker",
+    headline: "Curious, adaptable, always learning.",
+    strengths: [
+      { title: "Curiosity", body: "Driven to understand everything." },
+      { title: "Adaptability", body: "Thrives in new environments." },
+      { title: "Learning Agility", body: "Absorbs new skills quickly." },
+    ],
+    blindSpots: [
+      { title: "Shiny Object Syndrome", body: "Starts new things without finishing." },
+      { title: "Lack of Depth", body: "Knows a little about everything, not deep expertise." },
+      { title: "Impatience", body: "Wants results NOW." },
+    ],
+    toxicityTrigger: { label: "Stagnation", items: ["Repetitive work", "No growth opportunities", "\u201CSame old, same old\u201D culture"] },
+    burnoutPattern: { label: "Boredom Burnout", items: ["Leaves when nothing new to learn", "Becomes disengaged and apathetic", "Can\u2019t find meaning in routine"] },
+    prescription: "Explorer, your curiosity is your superpower. Today, go deep, not wide. Apply one new skill \u2014 don\u2019t just learn it, use it.",
+    workplaceMatch: ["Consulting", "Research", "Product development"],
+    evolution: ["Explorer \u2192 Visionary", "Explorer \u2192 Alchemist"],
+    accent: "explorer",
+  },
+  {
+    slug: "guardian",
+    name: "The Guardian",
+    icon: "🏰",
+    tagline: "The Protector",
+    headline: "Loyal, protective, maintains stability.",
+    strengths: [
+      { title: "Protectiveness", body: "Shields others from harm." },
+      { title: "Loyalty", body: "Stands by the team, no matter what." },
+      { title: "Stability", body: "Creates predictable, safe environments." },
+    ],
+    blindSpots: [
+      { title: "Over-Protectiveness", body: "Holds others back to keep them safe." },
+      { title: "Risk Aversion", body: "Misses opportunities due to fear." },
+      { title: "Suspicion", body: "Struggles to trust outsiders." },
+    ],
+    toxicityTrigger: { label: "Betrayal", items: ["Broken trust", "Toxic leadership", "Disloyalty"] },
+    burnoutPattern: { label: "Cynical Withdrawal", items: ["Stops trusting, withdraws from others", "Becomes cynical about the organization", "Stops investing emotionally"] },
+    prescription: "Guardian, your loyalty is what makes you trustworthy. Today, take a calculated risk. Trust someone new. The worst case isn\u2019t as bad as you think.",
+    workplaceMatch: ["Security", "Compliance", "Family-owned businesses"],
+    evolution: ["Guardian \u2192 Anchor", "Guardian \u2192 Sentinel"],
+    accent: "guardian",
+  },
+  {
+    slug: "alchemist",
+    name: "The Alchemist",
+    icon: "🧪",
+    tagline: "The Transmuter",
+    headline: "Creative, intuitive, sees connections others miss.",
+    strengths: [
+      { title: "Creativity", body: "Generates novel solutions." },
+      { title: "Intuition", body: "Sees patterns others don\u2019t." },
+      { title: "Transmutation", body: "Transforms problems into opportunities." },
+    ],
+    blindSpots: [
+      { title: "Emotional Volatility", body: "Overwhelmed by their own sensitivity." },
+      { title: "Internalization", body: "Blames themselves for everything." },
+      { title: "Impracticality", body: "Ideas are brilliant but unexecutable." },
+    ],
+    toxicityTrigger: { label: "Emotional Neglect", items: ["Dismissive cultures", "\u201CDon\u2019t be so sensitive\u201D", "Lack of emotional safety"] },
+    burnoutPattern: { label: "Self-Doubt Spiral", items: ["Internalizes every failure", "Questions their own worth", "Retreats into isolation"] },
+    prescription: "Alchemist, your sensitivity is your source of creativity. Today, separate facts from feelings. Your emotions are valid \u2014 but they aren\u2019t always right.",
+    workplaceMatch: ["Creative teams", "R&D", "Therapy, coaching"],
+    evolution: ["Alchemist \u2192 Visionary", "Alchemist \u2192 Harmonizer"],
+    accent: "alchemist",
+  },
+  {
+    slug: "strategist",
+    name: "The Strategist",
+    icon: "♟️",
+    tagline: "The Chess Master",
+    headline: "Analytical, strategic, precise execution.",
+    strengths: [
+      { title: "Analytical", body: "Breaks down complex problems." },
+      { title: "Strategic", body: "Sees the 10-step plan." },
+      { title: "Precision", body: "Executes with accuracy." },
+    ],
+    blindSpots: [
+      { title: "Overthinking", body: "Analysis paralysis." },
+      { title: "Inflexibility", body: "Struggles to pivot quickly." },
+      { title: "Impatience with Others", body: "Others can\u2019t keep up with their pace." },
+    ],
+    toxicityTrigger: { label: "Short-Term Thinking", items: ["Reactive leadership", "\u201CMove fast and break things\u201D", "Quick pivots without data"] },
+    burnoutPattern: { label: "Vision\u2013Reality Gap", items: ["Exhausted by the gap between vision and reality", "Cannot compromise on quality or strategy", "Feels like the world isn\u2019t smart enough"] },
+    prescription: "Strategist, your analysis is what makes you brilliant. Today, take one imperfect action. The perfect strategy means nothing without execution.",
+    workplaceMatch: ["Consulting", "M&A", "Product strategy", "Finance"],
+    evolution: ["Strategist \u2192 Sentinel", "Strategist \u2192 Visionary"],
+    accent: "strategist",
+  },
+  {
+    slug: "catalyst",
+    name: "The Catalyst",
+    icon: "⚡",
+    tagline: "The Spark",
+    headline: "Action-oriented, dynamic, initiates momentum where others stall.",
+    strengths: [
+      { title: "Action Oriented", body: "Turns intention into motion faster than anyone else." },
+      { title: "Dynamic Force", body: "Generates energy that pulls entire teams into motion." },
+      { title: "Initiator", body: "Starts what others have only talked about." },
+    ],
+    blindSpots: [
+      { title: "Skips Steps", body: "Speed comes at the cost of process and detail." },
+      { title: "Burns Bridges", body: "Momentum can leave people — and relationships — behind." },
+      { title: "Impatient", body: "Struggles when things need to marinate." },
+    ],
+    toxicityTrigger: { label: "Inertia", items: ["Bureaucratic paralysis", "Endless deliberation", "Risk-averse leadership"] },
+    burnoutPattern: { label: "Momentum Crash", items: ["Sprints until the tank is empty", "Cannot sit with quiet", "Feels worthless when not producing motion"] },
+    prescription: "Catalyst, your fire starts movements. Today, initiate ONE new thing — but bring one person along. Momentum without allies is a lonely fire.",
+    workplaceMatch: ["Turnaround teams", "Growth-stage startups", "Sales & business development"],
+    evolution: ["Catalyst \u2192 Visionary", "Catalyst \u2192 Strategist"],
+    accent: "catalyst",
+  },
+  {
+    slug: "sage",
+    name: "The Sage",
+    icon: "📚",
+    tagline: "The Synthesiser",
+    headline: "Knowledge seeker who weaves disparate threads into wisdom.",
+    strengths: [
+      { title: "Deep Knowledge", body: "Absorbs and retains vast, cross-domain expertise." },
+      { title: "Synthesis", body: "Connects ideas across fields into new frameworks." },
+      { title: "Wisdom", body: "Sees patterns and long arcs others miss." },
+    ],
+    blindSpots: [
+      { title: "Analysis Paralysis", body: "Waits for more data instead of acting." },
+      { title: "Detached from Reality", body: "Prefers theory over the messy specifics of practice." },
+      { title: "High Context", body: "Assumes others share the depth of context they hold." },
+    ],
+    toxicityTrigger: { label: "Anti-intellectualism", items: ["Dismissal of nuance", "\u201CJust do it\u201D cultures", "Reward for confidence over accuracy"] },
+    burnoutPattern: { label: "Retreat into the Library", items: ["Withdraws into research", "Loses trust in the world of action", "Feels unheard and irrelevant"] },
+    prescription: "Sage, your wisdom is a rare public good — but only when shared. Today, translate one idea into one action a non-expert can take.",
+    workplaceMatch: ["Research", "Policy & think tanks", "Advisory roles"],
+    evolution: ["Sage \u2192 Strategist", "Sage \u2192 Alchemist"],
+    accent: "sage",
+  },
+];
+
+export function getArchetype(slug: string): Archetype | undefined {
+  return ARCHETYPES.find((a) => a.slug === slug);
+}
