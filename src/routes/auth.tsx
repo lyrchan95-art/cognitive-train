@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { AppShell } from "@/components/site/AppShell";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable/index";
+import { useServerFn } from "@tanstack/react-start";
+import { startDemoSession } from "@/lib/demo.functions";
 import { LEGAL_VERSION } from "@/lib/legal";
 
 const searchSchema = z.object({
@@ -18,7 +19,8 @@ export const Route = createFileRoute("/auth")({
       { title: "Sign in — The Cognitive Atelier" },
       {
         name: "description",
-        content: "Sign in to save your Cognitive Archetype and receive daily personalized insights.",
+        content:
+          "Sign in to save your Cognitive Archetype and receive daily personalized insights.",
       },
     ],
   }),
@@ -36,6 +38,7 @@ function AuthPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+  const startDemo = useServerFn(startDemoSession);
 
   const redirectTo = safeRedirect(search.redirect);
 
@@ -72,9 +75,7 @@ function AuthPage() {
           },
         });
         if (error) throw error;
-        setNotice(
-          "Account created. Check your inbox to confirm your email, then sign in.",
-        );
+        setNotice("Account created. Check your inbox to confirm your email, then sign in.");
         setMode("signin");
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
@@ -88,26 +89,19 @@ function AuthPage() {
     }
   }
 
-  async function handleGoogle() {
+  async function handleDemo() {
     setLoading(true);
     setError(null);
+    setNotice(null);
     try {
-      // Save intended destination — OAuth returns to origin, then we navigate.
-      if (typeof window !== "undefined") {
-        window.sessionStorage.setItem("post_auth_redirect", redirectTo);
-      }
-      const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin,
-      });
-      if (result.error) {
-        setError(result.error.message ?? "Google sign-in failed.");
-        setLoading(false);
-        return;
-      }
-      if (result.redirected) return;
-      navigate({ to: redirectTo, replace: true });
+      // The server creates a fresh, pre-filled sandbox account and returns
+      // one-time credentials for it.
+      const creds = await startDemo();
+      const { error } = await supabase.auth.signInWithPassword(creds);
+      if (error) throw error;
+      navigate({ to: "/dashboard", replace: true });
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Google sign-in failed.");
+      setError(err instanceof Error ? err.message : "Could not start the demo.");
       setLoading(false);
     }
   }
@@ -128,14 +122,15 @@ function AuthPage() {
 
           <button
             type="button"
-            onClick={handleGoogle}
+            onClick={handleDemo}
             disabled={loading}
             className="mt-6 flex w-full items-center justify-center gap-2 rounded-full border border-ink px-4 py-3 text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-60"
           >
-            <span>Continue with Google</span>
+            <span>{loading ? "Working…" : "Log in with a test account"}</span>
           </button>
-          <p className="mt-2 text-center text-[11px] text-ink-muted">
-            By continuing, you agree to our{" "}
+          <p className="mt-2 text-center text-[11px] leading-relaxed text-ink-muted">
+            One click, no sign-up. A private sample account with two weeks of data, deleted after 24
+            hours. By continuing, you agree to our{" "}
             <Link to="/terms" className="underline hover:text-accent">
               Terms
             </Link>{" "}

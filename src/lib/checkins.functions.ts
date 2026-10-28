@@ -12,7 +12,7 @@ const checkInSchema = z.object({
 });
 
 /** Check-in days roll over at midnight Hong Kong time. */
-function hkToday(): string {
+export function hkToday(): string {
   return new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Hong_Kong" });
 }
 

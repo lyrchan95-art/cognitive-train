@@ -41,8 +41,9 @@ function PrivacyPage() {
       <LegalSection title="2. What we collect">
         <ul>
           <li>
-            <strong className="text-ink">Account details:</strong> email address, the name you give
-            us, and — if you sign in with Google — your Google account name and email.
+            <strong className="text-ink">Account details:</strong> your email address and the name
+            you give us. One-click test accounts use made-up sample data, hold no personal details,
+            and are deleted automatically after 24 hours.
           </li>
           <li>
             <strong className="text-ink">Assessment answers:</strong> your 30 answers, the six
@@ -132,10 +133,7 @@ function PrivacyPage() {
         <ul>
           <li>Supabase — database and sign-in.</li>
           <li>Cloudflare — website hosting.</li>
-          <li>
-            Lovable — application platform and AI gateway; Google — the AI model and, if you choose
-            it, Google sign-in.
-          </li>
+          <li>Lovable — application platform and AI gateway; Google — the AI model.</li>
         </ul>
         <p>
           These providers may store or process data outside Hong Kong. We share data only as needed
